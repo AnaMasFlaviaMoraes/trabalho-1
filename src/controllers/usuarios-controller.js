@@ -8,15 +8,16 @@ class UsuariosController{
         this.usuariosDAO = new UsuariosDAO(db);
     }
 
-    listarUsuarios(req, res){
-        this.usuariosDAO.getAll((err, rows) => {
-            if(err){
-                console.log(err);
-                return res.status(400).json(err);
-            }
-            const usuarios = rows.map(row => new Usuarios(row.id, row.tipo, row.nome, row.cpf));
-            res.json(usuarios);
-        }); 
+    async listarUsuarios(req, res){
+        try {
+            const usuarios = await this.usuariosDAO.getAll();
+            console.log({usuarios});
+            res.send(usuarios);
+        } catch (err) {
+            // Handle error
+            console.error(err);
+            res.status(500).send("Ocorreu um erro ao buscar os usuários");
+        }
     }
 }
 

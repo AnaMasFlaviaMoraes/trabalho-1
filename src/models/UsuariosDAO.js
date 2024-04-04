@@ -4,14 +4,18 @@ class UsuariosDAO{
         this.db = db;
     }
 
-    getAll(callback){
-        this.db.all("SELECT * FROM usuarios", [], (err, rows) => {
-            if(err){
-                return callback(err);
-            }
-            callback(null, rows);
-        })
-
+    getAll(){
+        console.log("aqui", this.db);
+        return new Promise((resolve, reject) => {
+            this.db.all('SELECT * FROM usuarios', (err, rows) => {
+                if (err) {
+                    console.log(err);
+                    reject(err);
+                }
+                console.log({ rows });
+                resolve(rows);
+            });
+        });
     }
 
     /*

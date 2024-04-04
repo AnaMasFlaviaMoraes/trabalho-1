@@ -1,0 +1,15 @@
+.center{
+    width: 100%;
+
+}
+
+table td{
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid black;
+}
+
+table th{
+    border: 1px solid black;
+    background: #F0FFF0;
+}
