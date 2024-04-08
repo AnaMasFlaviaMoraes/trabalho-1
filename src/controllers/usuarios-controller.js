@@ -35,8 +35,10 @@ class UsuariosController{
                 return;
             }
     
-            // Se tudo ocorreu bem, envia uma resposta de sucesso.
-            res.status(201).send({ message: "Usuário inserido com sucesso", id: lastId });
+            // // Se tudo ocorreu bem, envia uma resposta de sucesso.
+            // res.status(201).send({ message: "Usuário inserido com sucesso", id: lastId });
+
+            this.listarUsuarios(req, res);
         });
         res.send(result);
     }
@@ -84,6 +86,35 @@ class UsuariosController{
             console.error(err);
             res.status(500).send("Ocorreu um erro ao buscar o usuário");
         }
+    }
+
+    async showEditPage(req, res) {
+        try{
+            const usuario = await this.usuariosDAO.getUser(req.params.id);
+            console.log("Usuario encontrado: ", usuario);
+            res.render('../views/edit-user', {usuario: usuario});
+        } catch (err) {
+            // Handle error
+            console.error(err);
+            res.status(500).send("Ocorreu um erro ao buscar o usuário");
+        }
+    }
+
+    editaUsuario(req, res) {
+        const { tipo, nome, cpf } = req.body;
+        const usuario = new Usuarios(req.params.id, tipo, nome, cpf);
+        console.log("Usuario a ser editado: ", usuario);
+        const result = this.usuariosDAO.edit(usuario, (err, lastId) => {
+            if (err) {
+                // Tratando o erro, possivelmente enviando uma resposta HTTP 500
+                res.status(500).send({ message: "Erro ao atualizar usuário no banco de dados", error: err.message });
+                return;
+            }
+    
+            // // Se tudo ocorreu bem, envia uma resposta de sucesso.
+            // res.status(201).send({ message: "Usuário editado com sucesso" });
+        });
+        this.listarUsuarios(req, res);
     }
         
 }

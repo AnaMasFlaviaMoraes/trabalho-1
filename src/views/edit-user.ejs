@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar usuário</title>
+</head>
+<body>
+    <h1>Editar usuário:</h1>
+    <form method="post" action="/usuarios/<%= usuario.id %>">
+        <label>Tipo de usuário:</label>
+        <select name="tipo" value="<%= usuario.nome %>">
+            <option value="admin">Administrador</option>
+            <option value="cliente">Cliente</option>
+        </select>
+        <br />
+        <label>Nome:</label>
+        <input type="text" name="nome" value="<%= usuario.nome %>"/>
+        <br />
+
+        <label>CPF</label>
+        <input type="text" name="cpf" value="<%= usuario.cpf %>"/>
+        <br />
+        <input type="submit" value="Editar">
+    </form>
+</body>
+</html>

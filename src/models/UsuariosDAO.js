@@ -64,6 +64,29 @@ class UsuariosDAO{
             callback(null);
         });
     }
+
+    edit(usuario, callback) {
+    
+     // Definindo a instrução SQL para atualizar os dados do usuário
+        const sql = `
+            UPDATE usuarios
+                SET tipo = ?, nome = ?, cpf = ?
+                WHERE id = ?
+            `;
+        
+        // Parâmetros para a query SQL, incluindo os novos valores para 'tipo', 'nome', e 'cpf', além do 'id' do usuário que está sendo editado
+        const parametros = [usuario.tipo, usuario.nome, usuario.cpf, usuario.id];
+        
+        // Executando a instrução SQL
+        this.db.run(sql, parametros, function(err) {
+             if (err) {
+                callback(err);
+                return;
+            }
+            // Se a atualização for bem-sucedida, 'this.changes' contém o número de linhas afetadas
+            callback(null, this.changes);
+        });
+    }
 }
 
 module.exports = {UsuariosDAO};
