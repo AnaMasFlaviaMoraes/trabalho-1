@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Cadastro de usuário:</h1>
+    <form method="post" action="/usuarios">
+        <label>Tipo de usuário:</label>
+        <select name="tipo">
+            <option value="admin">Administrador</option>
+            <option value="cliente">Cliente</option>
+        </select>
+        <br />
+        <label>Nome:</label>
+        <input type="text" name="nome"/>
+        <br />
+
+        <label>CPF</label>
+        <input type="text" name="cpf"/>
+        <br />
+        <input type="submit" value="Cadastrar">
+    </form>
+</body>
+</html>
