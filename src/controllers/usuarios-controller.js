@@ -8,12 +8,12 @@ class UsuariosController{
         this.usuariosDAO = new UsuariosDAO(db);
     }
 
-    async listarUsuarios(req, res){
+    async listarUsuarios(req, res, estado = {}){
         try {
             const usuarios = await this.usuariosDAO.getAll();
             console.log({usuarios});
             //res.send(usuarios);
-            res.render("../views/usuarios", {usuarios: usuarios});
+            res.render("../views/usuarios", {usuarios: usuarios, ...estado});
         } catch (err) {
             // Handle error
             console.error(err);
@@ -38,9 +38,9 @@ class UsuariosController{
             // // Se tudo ocorreu bem, envia uma resposta de sucesso.
             // res.status(201).send({ message: "Usuário inserido com sucesso", id: lastId });
 
-            this.listarUsuarios(req, res);
+            this.listarUsuarios(req, res, { cadastroSucesso: true });
         });
-        res.send(result);
+        // res.send(result);
     }
 
     async mostraUsuario(req, res) {

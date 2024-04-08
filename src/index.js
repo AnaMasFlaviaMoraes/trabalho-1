@@ -19,7 +19,7 @@ app.set("views", __dirname + "/views");
 const usuariosRoutes = require("./routers/usuarios-routes");
 app.use("/usuarios", usuariosRoutes);
 
-app.get("/", (req, res) => res.render("home"));
+app.get("/", usuariosRoutes);
 
 app.listen(3000);
 

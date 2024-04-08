@@ -45,5 +45,12 @@
             </tbody>
         </table>
     </div>
+    <% if (typeof cadastroSucesso !== 'undefined' && cadastroSucesso) { %>
+        <script>
+            window.onload = function() {
+                alert('Usuário inserido com sucesso!');
+            }
+        </script>
+    <% } %>
 </body>
 </html>
