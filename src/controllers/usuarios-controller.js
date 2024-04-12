@@ -1,6 +1,7 @@
 const db = require("../db-config/db-connection");
-const {Usuarios} = require("../models/Usuarios");
-const {UsuariosDAO} = require("../models/UsuariosDAO");
+const { Usuarios } = require("../models/Usuarios");
+const { UsuariosDAO } = require("../models/UsuariosDAO");
+const { parse } = require('json2csv');
 
 class UsuariosController{
 
@@ -19,6 +20,18 @@ class UsuariosController{
             console.error(err);
             res.status(500).send("Ocorreu um erro ao buscar os usuários");
         }
+    }
+
+    async relatorioUsuarios(req, res){
+        const users = await this.usuariosDAO.getAll();
+        const csv = parse(users, ['id', 'tipo', 'nome','email', 'telefone','cpf']);
+    
+        // Define o cabeçalho para indicar o download de um arquivo
+        res.header('Content-Type', 'text/csv');
+        res.attachment('usuarios.csv');
+        
+        // Envia o conteúdo CSV como resposta
+        res.send(csv);
     }
 
     showAddPage(req, res) {
