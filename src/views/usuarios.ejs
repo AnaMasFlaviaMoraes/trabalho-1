@@ -40,7 +40,9 @@
                         <td><%= usuario.cpf %></td>
                         <td>
                             <a href="/usuarios/editar/<%= usuario.id %>"><i class="bi bi-pencil-square"></i></a>
-                            <a href="/usuarios/confirm-delete/<%= usuario.id %>"><i class="bi bi-trash"></i></a>
+                            <% if (usuario.tipo !== 'admin') { %>
+                                <a href="/usuarios/confirm-delete/<%= usuario.id %>"><i class="bi bi-trash"></i></a>
+                            <% } %>
                         </td>
                     </tr>
                 <% }); %>
@@ -51,6 +53,13 @@
         <script>
             window.onload = function() {
                 alert('Usuário inserido com sucesso!');
+            }
+        </script>
+    <% } %>
+    <% if (typeof editaSucesso !== 'undefined' && editaSucesso) { %>
+        <script>
+            window.onload = function() {
+                alert('Usuário editado com sucesso!');
             }
         </script>
     <% } %>

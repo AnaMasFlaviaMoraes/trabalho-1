@@ -22,18 +22,6 @@ class UsuariosController{
         }
     }
 
-    async relatorioUsuarios(req, res){
-        const users = await this.usuariosDAO.getAll();
-        const csv = parse(users, ['id', 'tipo', 'nome','email', 'telefone','cpf']);
-    
-        // Define o cabeçalho para indicar o download de um arquivo
-        res.header('Content-Type', 'text/csv');
-        res.attachment('usuarios.csv');
-        
-        // Envia o conteúdo CSV como resposta
-        res.send(csv);
-    }
-
     showAddPage(req, res) {
         res.render('../views/add-usuario');
     }
@@ -127,7 +115,19 @@ class UsuariosController{
             // // Se tudo ocorreu bem, envia uma resposta de sucesso.
             // res.status(201).send({ message: "Usuário editado com sucesso" });
         });
-        this.listarUsuarios(req, res);
+        this.listarUsuarios(req, res, { editaSucesso: true });
+    }
+
+    async relatorioUsuarios(req, res){
+        const users = await this.usuariosDAO.getAll();
+        const csv = parse(users, ['id', 'tipo', 'nome','email', 'telefone','cpf']);
+    
+        // Define o cabeçalho para indicar o download de um arquivo
+        res.header('Content-Type', 'text/csv');
+        res.attachment('usuarios.csv');
+        
+        // Envia o conteúdo CSV como resposta
+        res.send(csv);
     }
         
 }

@@ -9,10 +9,7 @@
     <h1>Editar usuário:</h1>
     <form method="post" action="/usuarios/<%= usuario.id %>">
         <label>Tipo de usuário:</label>
-        <select name="tipo" value="<%= usuario.nome %>">
-            <option value="admin">Administrador</option>
-            <option value="cliente">Cliente</option>
-        </select>
+        <input type="hidden" name="tipo" value="<%= usuario.tipo %>">
         <br />
         <label>Nome:</label>
         <input type="text" name="nome" value="<%= usuario.nome %>"/>
@@ -23,5 +20,6 @@
         <br />
         <input type="submit" value="Editar">
     </form>
+    <a href="/usuarios" class="btn btn-secondary" data-dismiss="modal">Cancelar</a>
 </body>
 </html>
