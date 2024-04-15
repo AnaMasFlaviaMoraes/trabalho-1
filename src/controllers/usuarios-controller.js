@@ -27,8 +27,8 @@ class UsuariosController{
     }
 
     cadastraUsuario(req, res) {
-        const { tipo, nome, cpf } = req.body;
-        const usuario = new Usuarios(null, tipo, nome, cpf);
+        const { tipo, nome, cpf, telefone, email } = req.body;
+        const usuario = new Usuarios(null, tipo, nome, cpf, telefone, email);
         const result = this.usuariosDAO.insert(usuario, (err, lastId) => {
             if (err) {
                 // Tratando o erro, possivelmente enviando uma resposta HTTP 500
@@ -102,8 +102,8 @@ class UsuariosController{
     }
 
     editaUsuario(req, res) {
-        const { tipo, nome, cpf } = req.body;
-        const usuario = new Usuarios(req.params.id, tipo, nome, cpf);
+        const { tipo, nome, cpf, telefone, email } = req.body;
+        const usuario = new Usuarios(req.params.id, tipo, nome, cpf, telefone, email);
         console.log("Usuario a ser editado: ", usuario);
         const result = this.usuariosDAO.edit(usuario, (err, lastId) => {
             if (err) {

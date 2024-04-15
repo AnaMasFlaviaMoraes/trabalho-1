@@ -33,10 +33,10 @@ class UsuariosDAO{
     insert(usuario, callback) {
         // Preparando o comando SQL para inserir os dados
         const sql = `
-        INSERT INTO usuarios (tipo, nome, cpf) VALUES (?, ?, ?)`;
+        INSERT INTO usuarios (tipo, nome, cpf, telefone, email) VALUES (?, ?, ?, ?, ?)`;
     
         // Executando a consulta SQL
-        this.db.run(sql, [usuario.tipo, usuario.nome, usuario.cpf], function(err) {
+        this.db.run(sql, [usuario.tipo, usuario.nome, usuario.cpf, usuario.telefone, usuario.email], function(err) {
             if (err) {
                 // Caso ocorra algum erro, o callback é chamado com o erro
                 callback(err);
@@ -70,12 +70,12 @@ class UsuariosDAO{
      // Definindo a instrução SQL para atualizar os dados do usuário
         const sql = `
             UPDATE usuarios
-                SET tipo = ?, nome = ?, cpf = ?
+                SET tipo = ?, nome = ?, cpf = ?, telefone = ?, email = ?
                 WHERE id = ?
             `;
         
         // Parâmetros para a query SQL, incluindo os novos valores para 'tipo', 'nome', e 'cpf', além do 'id' do usuário que está sendo editado
-        const parametros = [usuario.tipo, usuario.nome, usuario.cpf, usuario.id];
+        const parametros = [usuario.tipo, usuario.nome, usuario.cpf, usuario.telefone, usuario.email, usuario.id];
         
         // Executando a instrução SQL
         this.db.run(sql, parametros, function(err) {
