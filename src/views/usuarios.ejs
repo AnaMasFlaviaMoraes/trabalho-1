@@ -10,10 +10,10 @@
     <title>Usuários</title>
 </head>
 <body>
-    <div>
-        <a href="/usuarios/adicionar">Adicionar Usuário</a>
+    <div class="menu">
+        <a href="/usuarios/adicionar" class="btn btn-info">Adicionar Usuário</a>
         <br />
-        <a href="/usuarios/relatorio">Baixar Dados de Usuários</a>
+        <a href="/usuarios/relatorio" class="btn btn-info">Baixar Dados de Usuários</a>
     </div>
     <div>
         <h1>Lista de Usuários</h1>
@@ -39,10 +39,12 @@
                         <td><%= usuario.telefone %></td>
                         <td><%= usuario.cpf %></td>
                         <td>
-                            <a href="/usuarios/editar/<%= usuario.id %>"><i class="bi bi-pencil-square"></i></a>
-                            <% if (usuario.tipo !== 'admin') { %>
-                                <a href="/usuarios/confirm-delete/<%= usuario.id %>"><i class="bi bi-trash"></i></a>
-                            <% } %>
+                            <div class="icones">
+                                <a href="/usuarios/editar/<%= usuario.id %>"><i class="bi bi-pencil-square"></i></a>
+                                <% if (usuario.tipo !== 'admin') { %>
+                                    <a href="/usuarios/confirm-delete/<%= usuario.id %>"><i class="bi bi-trash"></i></a>
+                                <% } %>
+                            </div>
                         </td>
                     </tr>
                 <% }); %>
@@ -63,5 +65,37 @@
             }
         </script>
     <% } %>
+    <% if (typeof deleteSucesso !== 'undefined' && deleteSucesso) { %>
+        <script>
+            window.onload = function() {
+                alert('Usuário excuído com sucesso!');
+            }
+        </script>
+    <% } %>
+
+    <style>
+        body {
+            margin: 20px;
+            background-color: #B9B8B2;
+        }
+        td{
+            height: 45px;
+        }
+        i{
+            font-size: 18px;
+        }
+        .icones{
+            display: flex;
+            justify-content: space-evenly;
+        }
+        .menu{
+            margin-bottom: 30px;
+            display: flex;
+            gap: 30px;
+        }
+        a{
+            cursor: pointer;
+        }
+    </style>
 </body>
 </html>

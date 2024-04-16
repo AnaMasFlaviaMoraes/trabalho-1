@@ -3,31 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <title>Adicionar</title>
 </head>
 <body>
     <h1>Cadastro de usuário:</h1>
     <form method="post" action="/usuarios">
-        <label>Tipo de usuário:</label>
-        <select name="tipo">
-            <option value="admin">Administrador</option>
-            <option value="cliente">Cliente</option>
-        </select>
+        <div class="form-group">
+            <label>Tipo de usuário:</label>
+            <select name="tipo" class="form-control">
+                <option value="admin">Administrador</option>
+                <option value="cliente">Cliente</option>
+            </select>
+        </div>
         <br />
-        <label>Nome:</label>
-        <input type="text" name="nome"/>
+        <div class="form-group">
+            <label>Nome:</label>
+            <input type="text" name="nome" class="form-control" placeholder="Digite o nome" required/>
+        </div>
         <br />
-
-        <label>CPF</label>
-        <input type="text" name="cpf"/>
+        <div class="form-group">
+            <label>CPF:</label>
+            <input type="text" name="cpf" class="form-control" placeholder="000.000.000-00" required/>
+        </div>
         <br />
-        <label>Telefone</label>
-        <input type="text" name="telefone"/>
+        <div class="form-group">
+            <label>Telefone:</label>
+            <input type="text" name="telefone" class="form-control" placeholder="(XX)XXXXX-XXXX" required/>
+        </div>
         <br />
-        <label>Email</label>
-        <input type="text" name="email"/>
+        <div class="form-group">
+            <label>Email:</label>
+            <input type="email" name="email" class="form-control" placeholder="Digite o email" required/>
+        </div>
         <br />
-        <input type="submit" value="Cadastrar">
+        <input type="submit" value="Cadastrar" class="btn btn-primary">
     </form>
+    <br>
+    <a href="/" class="btn btn-warning" data-dismiss="modal">Voltar</a>
+
+    <style>
+        body {
+            margin: 20px;
+            background-color: #B9B8B2;
+        }
+        h1{
+            margin-bottom: 30px;
+        }
+        form{
+            margin-bottom: 20px;
+        }
+        .form-group{
+            margin-bottom: 0;
+        }
+    </style>
 </body>
 </html>
